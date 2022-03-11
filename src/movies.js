@@ -24,10 +24,16 @@ const howManyMovies = (movies) => {
 // --- CATALÀ ---
 // La mitjana de puntuació. Extreu la mitjana de totes les puntuacions de les pel·lícules,
 // amb dos decimals.
-const scoresAverage = ((movies) => {
-  let mov = movies.filter((pelicula) => pelicula.score);
-  return += mov)
+const scoresAverage = (movies) => {
+  if (movies.length === 0) return 0;
+  const sumaTot = movies.reduce((acc, movie) => {
+    if (movie.score !== undefined){
+    return movie.score + acc;
+  }, 0);
+  const resultat = (sumaTot / movies.length).toFixed(2);
+  return resultat;
 };
+//suma de tot dividit movies.length
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 // --- CATALÀ ---
