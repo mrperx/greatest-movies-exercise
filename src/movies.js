@@ -27,38 +27,65 @@ const howManyMovies = (movies) => {
 const scoresAverage = (movies) => {
   if (movies.length === 0) return 0;
   const sumaTot = movies.reduce((acc, movie) => {
-    if (movie.score !== undefined){
-    return movie.score + acc;
+    if (movie.score !== undefined) {
+      return movie.score + acc;
+    } else {
+      return acc;
+    }
   }, 0);
+
   const resultat = (sumaTot / movies.length).toFixed(2);
-  return resultat;
+  return Number(resultat);
 };
 //suma de tot dividit movies.length
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 // --- CATALÀ ---
 // Pel·lícules de drama. Extreu la mitjana de les Películes de drama.
-function dramaMoviesScore(movies) {}
+
+const dramaMoviesScore = (movies) => {
+  const dramaMovies = movies.filter((pelicula) => {
+    return pelicula.genre.includes('Drama');
+  });
+  return scoresAverage(dramaMovies);
+};
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 // --- CATALÀ ---
 // Ordenar per any. Order per ordre ascendent (creixent) les pel·lícules.
-function orderByYear(movies) {}
+function orderByYear(movies) {
+  const copyMov = movies.map((movie) => movie);
+  copyMov.sort((a, b) => {
+    if (a.year === b.year) {
+      //si es igual a 0 es que  hi han dos iguals
+      if (a.title > b.title) {
+        return 1;
+      } else if (a.title < b.title) {
+        return -1;
+      } else {
+        return 0;
+      }
+    } else {
+      return a.year - b.year;
+    }
+  });
+  return copyMov;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 // --- CATALÀ ---
 // Ordre alfabètic - Ordena per títol i extreu un array amb només els 20 primers títols.
-function orderAlphabetically(movies) {}
+const orderAlphabetically = (movies) => {};
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 // --- CATALÀ ---
 // BONUS: Format de temps. Canvia la duració de les pel·lícules de hores a minuts.
-function turnHoursToMinutes(movies) {}
+const turnHoursToMinutes = (movies) => {};
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 // --- CATALÀ ---
 // BONUS: Millor mitjana per any.
-function bestYearAvg(movies) {}
+const bestYearAvg = (movies) => {};
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
